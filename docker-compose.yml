@@ -1,13 +1,32 @@
 version: '3'
 
 services:
-  mason-lamp:
-    build: .
-    container_name: 'mason-lamp'
+  webserver:
+    build: docker/webserver/.
+    container_name: 'webserver'
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    links:
+      - database
     volumes:
       - ./site:/var/www/html
       - ./config/php.ini:/usr/local/etc/php/php.ini
       - ./config/default.conf:/etc/apache2/sites-enabled/default.conf
+  database:
+    build: docker/database/.
+    container_name: 'database'
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql

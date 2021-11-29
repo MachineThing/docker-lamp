@@ -9,30 +9,30 @@
     <div class="container">
       <h1>Hello, world!</h1>
       <p><?php
-        // Version
-        $version = phpversion();
-        echo "PHP Version: $version";
+      // Version
+      $version = phpversion();
+      echo "PHP Version: $version";
 
-        // Newline
-        echo "<br />";
+      // Newline
+      echo "<br />";
 
-        // Date
-        $todaydate = getdate();
+      // Date
+      $todaydate = getdate();
 
-        echo "$todaydate[weekday], $todaydate[month], $todaydate[mday]";
+      echo "$todaydate[weekday], $todaydate[month], $todaydate[mday]";
 
-        if (str_ends_with('1', (string)$todaydate['mday'])) {
-          echo "st";
-        } elseif (str_ends_with('2', (string)$todaydate['mday'])) {
-          echo "nd";
-        } elseif (str_ends_with('3', (string)$todaydate['mday'])) {
-          echo "rd";
-        } else {
-          echo "th";
-        }
+      if (str_ends_with('1', (string)$todaydate['mday'])) {
+        echo "st";
+      } elseif (str_ends_with('2', (string)$todaydate['mday'])) {
+        echo "nd";
+      } elseif (str_ends_with('3', (string)$todaydate['mday'])) {
+        echo "rd";
+      } else {
+        echo "th";
+      }
 
-        echo ", $todaydate[year]";
-        ?></p>
+      echo ", $todaydate[year]";
+      ?></p>
       <h2>Links</h2>
       <ul>
         <li><a href="/guestbook.php">Guestbook</a></li>
