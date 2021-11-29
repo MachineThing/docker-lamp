@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mason-lamp:
+    build: .
+    container_name: 'mason-lamp'
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./site:/var/www/html
+      - ./config/php.ini:/usr/local/etc/php/php.ini
+      - ./config/default.conf:/etc/apache2/sites-enabled/default.conf
