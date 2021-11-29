@@ -6,27 +6,38 @@
     <title>My Site!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
-    <p>Today is: <?php
-      $todaydate = getdate();
+    <div class="container">
+      <h1>Hello, world!</h1>
+      <p><?php
+        // Version
+        $version = phpversion();
+        echo "PHP Version: $version";
 
-      echo "$todaydate[weekday], $todaydate[month], $todaydate[mday]";
+        // Newline
+        echo "<br />";
 
-      if (str_ends_with('1', (string)$todaydate['mday'])) {
-        echo "st";
-      } elseif (str_ends_with('2', (string)$todaydate['mday'])) {
-        echo "nd";
-      } elseif (str_ends_with('3', (string)$todaydate['mday'])) {
-        echo "rd";
-      } else {
-        echo "th";
-      }
+        // Date
+        $todaydate = getdate();
 
-      echo ", $todaydate[year]";
-      ?></p>
-    <h2>Links</h2>
-    <ul>
-      <li><a href="/phpinfo.php">PHP Info</a></li>
-    </ul>
+        echo "$todaydate[weekday], $todaydate[month], $todaydate[mday]";
+
+        if (str_ends_with('1', (string)$todaydate['mday'])) {
+          echo "st";
+        } elseif (str_ends_with('2', (string)$todaydate['mday'])) {
+          echo "nd";
+        } elseif (str_ends_with('3', (string)$todaydate['mday'])) {
+          echo "rd";
+        } else {
+          echo "th";
+        }
+
+        echo ", $todaydate[year]";
+        ?></p>
+      <h2>Links</h2>
+      <ul>
+        <li><a href="/guestbook.php">Guestbook</a></li>
+        <li><a href="/phpinfo.php">PHP Info</a></li>
+      </ul>
+    </div>
   </body>
 </html>
