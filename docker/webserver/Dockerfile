@@ -1,4 +1,4 @@
-FROM php:8-apache-bullseye
+FROM php:8.1.0-apache-bullseye
 
 RUN apt-get update
 RUN apt-get upgrade -y

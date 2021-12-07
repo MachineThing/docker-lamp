@@ -1,1 +1,1 @@
-FROM mariadb:10.7.1
+FROM mariadb:latest
