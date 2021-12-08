@@ -30,14 +30,20 @@
       function guestpost($time, $name, $email, $website, $message) {
         $strdate = date("l, F jS, Y g:i:s A", $time);
 
+        // Escape HTML characters to prevent XSS
+        $name = htmlspecialchars($name);
+        $message = htmlspecialchars($message);
+
         echo "<div class=\"guestpost\">";
         echo "<p>Date: $strdate</p>";
         echo "<p>Name: $name</p>";
         if ($email != null) {
+          $email = htmlspecialchars($email);
           echo "<p>Email: $email</p>";
         }
         if ($website != null) {
           $link_website = null;
+
           if (!str_starts_with($website, "http://") && !str_starts_with($website, "https://")) {
             $link_website = "https://" . $website;
           } else {
