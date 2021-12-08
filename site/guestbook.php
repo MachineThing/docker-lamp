@@ -52,11 +52,9 @@
       }
 
       // Connect to database
-      $link=mysqli_connect("database",$_ENV['MYSQL_USER'],$_ENV['MYSQL_PASSWORD'],$_ENV['MYSQL_DATABASE'], 3306);
-
-      if (mysqli_connect_errno()) {
-        die("MySQL connecttion failed: " . mysqli_connect_error());
-      }
+      $db = $_ENV['MYSQL_DATABASE'];
+      $conn = new PDO("mysql:host=database;dbname=$db", $_ENV['MYSQL_USER'], $_ENV['MYSQL_PASSWORD']);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       // On POST request
 
@@ -72,27 +70,34 @@
         $sql = "INSERT INTO messages (sent, name, email, website, message)
                 VALUES ($time, '$name', '$email', '$website', '$message');";
 
-        if ($link->query($sql) === TRUE) {
+        try {
+          $conn->exec($sql);
           echo "<p>Thank you for posting $name!</p>";
-        } else {
-          echo "Error: " . $sql . "<br>" . $conn->error;
+        } catch (PDOException $e) {
+          echo "Error: " . $sql . "<br>" . $e->getMessage();
         }
       }
 
       // Get all posts
 
-      $sql = "SELECT sent, name, email, website, message FROM messages ORDER BY id DESC;";
-      $result = $link->query($sql);
+      try {
+        $sql = "SELECT sent, name, email, website, message FROM messages ORDER BY id DESC;";
+        $result = $conn->query($sql);
 
-      if (mysqli_num_rows($result) > 0) {
-        // Output data of all rows
-        while ($row = mysqli_fetch_assoc($result)) {
-          guestpost($row['sent'], $row['name'], $row['email'], $row['website'], $row['message']);
+        if($result !== false) {
+          $cols = $result->columnCount();
+
+          foreach($result as $row) {
+            guestpost($row['sent'], $row['name'], $row['email'], $row['website'], $row['message']);
+          }
         }
+
+      } catch (PDOException $e) {
+        echo "Error: " . $sql . "<br>" . $e->getMessage();
       }
 
       // Done
-      mysqli_close($link);
+      $conn = null;
       ?>
     </div>
   </body>
