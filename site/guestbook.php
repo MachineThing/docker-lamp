@@ -23,7 +23,7 @@
         <textarea name="message" value=""></textarea>
         <br />
         <button type="submit" name="button">Submit</button>
-        <br /><br />
+        <br /><hr />
 
       </form>
       <?php
@@ -33,10 +33,10 @@
         echo "<div class=\"guestpost\">";
         echo "<p>Date: $strdate</p>";
         echo "<p>Name: $name</p>";
-        if ($email != "") {
+        if ($email != null) {
           echo "<p>Email: $email</p>";
         }
-        if ($website != "") {
+        if ($website != null) {
           $link_website = null;
           if (!str_starts_with($website, "http://") && !str_starts_with($website, "https://")) {
             $link_website = "https://" . $website;
@@ -63,16 +63,25 @@
       if (isset($_POST['name']) && isset($_POST['message'])) {
         $time = time();
         $name = $_POST['name'];
-        $email = $_POST['email'];
-        $website = $_POST['website'];
+        $email = ($_POST['email'] == '') ? null : $_POST['email'];
+        $website = ($_POST['website'] == '') ? null : $_POST['website'];
         $message = $_POST['message'];
 
-        guestpost($time, $name, $email, $website, $message);
+        // Next part of the script will show the user's post.
+        // TODO: Fix SQL injection + XSS
+        $sql = "INSERT INTO messages (sent, name, email, website, message)
+                VALUES ($time, '$name', '$email', '$website', '$message');";
+
+        if ($link->query($sql) === TRUE) {
+          echo "<p>Thank you for posting $name!</p>";
+        } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+        }
       }
 
       // Get all posts
 
-      $sql = "SELECT sent, name, email, website, message FROM messages ORDER BY id";
+      $sql = "SELECT sent, name, email, website, message FROM messages ORDER BY id DESC;";
       $result = $link->query($sql);
 
       if (mysqli_num_rows($result) > 0) {
