@@ -66,12 +66,19 @@
         $message = $_POST['message'];
 
         // Next part of the script will show the user's post.
-        // TODO: Fix SQL injection + XSS
+        // TODO: Fix XSS
         $sql = "INSERT INTO messages (sent, name, email, website, message)
-                VALUES ($time, '$name', '$email', '$website', '$message');";
+                VALUES (?, ?, ?, ?, ?);";
 
         try {
-          $conn->exec($sql);
+          // Safely posts data into database (prevents SQL injection)
+          $stmt = $conn->prepare($sql);
+          $stmt->bindParam(1, $time, PDO::PARAM_INT); // unsigned bigint
+          $stmt->bindParam(2, $name, PDO::PARAM_STR, 255); // tinytext
+          $stmt->bindParam(3, $email, PDO::PARAM_STR, 255); // tinytext
+          $stmt->bindParam(4, $website, PDO::PARAM_STR, 255); // tinytext
+          $stmt->bindParam(5, $message, PDO::PARAM_STR, 65535); // text
+          $stmt->execute();
           echo "<p>Thank you for posting $name!</p>";
         } catch (PDOException $e) {
           echo "Error: " . $sql . "<br>" . $e->getMessage();
