@@ -35,7 +35,7 @@
       ?></p>
       <h2>Links</h2>
       <ul>
-        <li><a href="/guestbook.php">Guestbook</a></li>
+        <li><a href="/interactive/guestbook.php">Guestbook</a></li>
         <li><a href="/phpinfo.php">PHP Info</a></li>
       </ul>
     </div>

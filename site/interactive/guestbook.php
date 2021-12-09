@@ -8,24 +8,29 @@
   <body>
     <div class="container">
       <h1>Guestbook</h1>
-      <form class="" action="<?php $_PHP_SELF ?>" method="post">
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="" />
-        <br />
-        <label for="email">Email:</label>
-        <input type="text" name="email" value="" />
-        <br />
-        <label for="website">Website:</label>
-        <input type="text" name="website" value="" />
-        <br />
-        <label for="message">Message:</label>
-        <br />
-        <textarea name="message" value=""></textarea>
-        <br />
-        <button type="submit" name="button">Submit</button>
-        <br /><hr />
-
-      </form>
+      <div class="form">
+        <form class="" action="<?php $_PHP_SELF ?>" method="post">
+          <table>
+            <tr>
+              <td><label for="name">Name:</label></td>
+              <td><input type="text" name="name" value="" style="width:200px;" /></td>
+            </tr>
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input type="text" name="email" value="" style="width:200px;" /></td>
+            </tr>
+            <tr>
+              <td><label for="website">Website:</label></td>
+              <td><input type="text" name="website" value="" style="width:200px;"/></td>
+            </tr>
+            <tr>
+              <td><label for="message">Message:</label></td>
+              <td><textarea name="message" rows="2" value="" style="width:200px; max-width:200px;"></textarea></td>
+            </tr>
+          </table>
+          <button type="submit" name="button">Submit</button>
+        </form>
+      </div>
       <?php
       function guestpost($time, $name, $email, $website, $message) {
         $strdate = date("l, F jS, Y g:i:s A", $time);
@@ -54,7 +59,6 @@
         echo "<br />";
         echo "<p>$message</p>";
         echo "</div>";
-        echo "<br />";
       }
 
       // Connect to database
