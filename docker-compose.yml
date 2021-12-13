@@ -14,6 +14,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     links:
       - database
+      - chatroom
     volumes:
       - ./site:/var/www/html
       - ./config/php.ini:/usr/local/etc/php/php.ini
@@ -31,3 +32,13 @@ services:
     volumes:
       - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
+  chatroom:
+    build: docker/chatroom/.
+    container_name: 'chatroom'
+    ports:
+      - "3001:3001"
+    environment:
+      # Make it so Python immediately flushes stdout after printing
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./chatroom:/chatroom

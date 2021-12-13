@@ -1,8 +1,8 @@
 # LAMP Site
 
-A simple LAMP stack website that runs on Docker.
+A LAMP stack website that runs on Docker.
 
-Docker info:
-- MariaDB
-- Apache HTTP server
-- PHP 8.1
+## Containers
+- webserver - The webserver running PHP 8.1 and Apache
+- database - The database running MariaDB
+- chatroom - Chatroom server made with Python
