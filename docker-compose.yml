@@ -12,7 +12,7 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    links:
+    depends_on:
       - database
       - chatroom
     volumes:
@@ -22,7 +22,7 @@ services:
   database:
     build: docker/database/.
     container_name: 'database'
-    ports:
+    expose:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -35,7 +35,7 @@ services:
   chatroom:
     build: docker/chatroom/.
     container_name: 'chatroom'
-    ports:
+    expose:
       - "3001:3001"
     environment:
       # Make it so Python immediately flushes stdout after printing
