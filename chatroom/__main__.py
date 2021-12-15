@@ -25,7 +25,9 @@ def routine():
         if not command:
             break
         else:
-            print(command)
+            formatted = command.decode("utf-8")
+            conn.send("{} with pleasure".format(formatted).encode("utf-8"))
+            print(formatted)
 
 def quit_routine():
     sock.shutdown(1)

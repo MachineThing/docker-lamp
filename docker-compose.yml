@@ -35,7 +35,7 @@ services:
   chatroom:
     build: docker/chatroom/.
     container_name: 'chatroom'
-    ports:
+    expose:
       - "3001:3001"
     environment:
       # Make it so Python immediately flushes stdout after printing

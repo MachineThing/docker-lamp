@@ -5,6 +5,7 @@ RUN apt-get upgrade -y
 
 # Install PHP modules
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install sockets
 
 # Enable apache modules
 RUN a2enmod rewrite headers
