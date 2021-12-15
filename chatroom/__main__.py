@@ -1,6 +1,10 @@
 import socket
+from . import messages as msg
+from . import sigterm
 
-print("Initializng chatroom.")
+print(msg.chat_init)
+
+# Socket stuff
 
 host = '0.0.0.0'
 port = 3001
@@ -8,21 +12,23 @@ port = 3001
 sock = socket.socket()
 sock.bind((host, port))
 
-print("Socket created!")
-print("Listening...")
+print(msg.sock_init)
 
-while True:
-    try:
-        sock.listen()
-        conn, addr = sock.accept()
-        with conn:
-            print("Connected by {}".format(addr))
-            conn.send('Pong!\n'.encode())
-            conn.close()
+# Routine
+
+def routine():
+    sock.listen()
+    conn, addr = sock.accept()
+    data = []
+    while True:
+        command = conn.recv(1024)
+        if not command:
             break
-    except KeyboardInterrupt:
-        break
+        else:
+            print(command)
 
-print("Quitting...")
-sock.shutdown(1)
-print("Bye!")
+def quit_routine():
+    sock.shutdown(1)
+    print(msg.goodbye)
+
+sigterm.sigterm(routine, quit_routine)
