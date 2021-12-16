@@ -1,6 +1,7 @@
 import socket
 from . import messages as msg
 from . import sigterm
+from . import commands
 
 print(msg.chat_init)
 
@@ -25,9 +26,21 @@ def routine():
         if not command:
             break
         else:
-            formatted = command.decode("utf-8")
-            conn.send("{} with pleasure".format(formatted).encode("utf-8"))
-            print(formatted)
+            response = command.decode("utf-8").split(":")
+            r_com = response[0].strip().upper()
+            r_str = response[1].strip()
+            print("{}: {}".format(r_com, r_str))
+
+            output = None
+            for key in commands.commands:
+                if key == r_com:
+                    output = commands.commands[key](r_str)
+                    break
+            if output != None:
+                conn.send(output.encode("utf-8"))
+            else:
+                print("Failed to execute command {}: {}".format(r_com, r_str))
+                conn.send("Failed to execute command {}: {}".format(r_com, r_str).encode("utf-8"))
 
 def quit_routine():
     sock.shutdown(1)
