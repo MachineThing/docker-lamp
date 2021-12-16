@@ -9,7 +9,7 @@
     <div class="container">
       <h1>Chatroom</h1>
       <p><?php
-      $str_to_send = "SEND: Hello, world!";
+      $str_to_send = "SEND: Nick: Hello, world!";
 
       $port_number = 3001;
       $ip_address = "chatroom";

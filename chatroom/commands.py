@@ -1,7 +1,7 @@
-def send(chat, string):
-    chat.push("Temp", string)
+def send(chat, name, string):
+    chat.push(name, string)
 
-def get(chat, string):
+def get(chat, name, string):
     chatlog = []
     for i in chat.get():
         chatlog.append(i)

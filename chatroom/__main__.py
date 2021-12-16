@@ -33,22 +33,23 @@ def routine():
             break
         else:
             response = command.decode("utf-8").split(":")
-            if len(response) > 2 or len(response) < 1:
+            if len(response) > 3 or len(response) < 2:
                 print("Bad command: {}".format(response))
                 conn.send(msg.gen_response(301))
             else:
-                if len(response) == 1:
+                if len(response) == 2:
                     response.append("None")
                 r_com = response[0].strip().upper()
-                r_str = response[1].strip()
-                print("{}: {}".format(r_com, r_str))
+                r_nme = response[1].strip()
+                r_str = response[2].strip()
+                print("{}: {}: {}".format(r_com, r_nme, r_str))
 
                 output = None
                 try:
                     command_exists = False
                     for key in commands.commands:
                         if key == r_com:
-                            output = commands.commands[key](chatroom, r_str)
+                            output = commands.commands[key](chatroom, r_nme, r_str)
                             command_exists = True
                             break
                     if command_exists:
@@ -57,10 +58,10 @@ def routine():
                         else:
                             conn.send(msg.gen_response(100))
                     else:
-                        print("Failed to execute command {}: {}".format(r_com, r_str))
+                        print("Failed to execute command {}: {}: {}".format(r_com, r_nme, r_str))
                         conn.send(msg.gen_response(300))
                 except BaseException as e:
-                    print("Error executing command {}: {}".format(r_com, r_str))
+                    print("Error executing command {}: {}: {}".format(r_com, r_nme, r_str))
                     print_exc()
                     conn.send(msg.gen_response(200))
 
