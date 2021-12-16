@@ -10,7 +10,7 @@ response = {
     # Successes     (1xx)
     100             :'Command successfully executed',
     # Server Errors (2xx)
-
+    200             :'Command failed to be executed',
     # Client Errors (3xx)
     300             :'Command doesn\'t exist',
     301             :'Command is malformed'

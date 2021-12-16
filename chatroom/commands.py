@@ -1,10 +1,9 @@
 def send(chat, string):
     chat.push("Temp", string)
-    return string
 
 def get(chat, string):
     chatlog = []
-    for i in chat:
+    for i in chat.get():
         chatlog.append(i)
     return tuple(chatlog)
 

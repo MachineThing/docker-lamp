@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$str_to_send = "Hello, world!";
+$str_to_send = "GET";
 
 $port_number = 3001;
 $ip_address = "chatroom";
@@ -13,7 +13,7 @@ socket_write($sock, $str_to_send, strlen($str_to_send)) or die("Unable to send d
 
 $server_recv = socket_read($sock, 1024) or die("Unable to read response from the server\n");
 
-echo json_encode($server_recv);
+echo $server_recv;
 
 socket_close($sock);
 ?>
