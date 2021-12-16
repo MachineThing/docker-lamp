@@ -2,6 +2,7 @@ import socket
 from . import messages as msg
 from . import sigterm
 from . import commands
+from . import chat
 
 print(msg.info["chat_init"])
 
@@ -13,7 +14,11 @@ port = 3001
 sock = socket.socket()
 sock.bind((host, port))
 
-print(msg.info["sock_init"])
+# Initialize chatroom object
+
+chatroom = chat.chatroom()
+
+print(msg.info["ready"])
 
 # Routine
 
@@ -27,10 +32,12 @@ def routine():
             break
         else:
             response = command.decode("utf-8").split(":")
-            if len(response) != 2:
+            if len(response) > 2 or len(response) < 1:
                 print("Bad command: {}".format(response))
                 conn.send(msg.gen_response(301))
             else:
+                if len(response) == 1:
+                    response.append(None)
                 r_com = response[0].strip().upper()
                 r_str = response[1].strip()
                 print("{}: {}".format(r_com, r_str))
@@ -38,7 +45,7 @@ def routine():
                 output = None
                 for key in commands.commands:
                     if key == r_com:
-                        output = commands.commands[key](r_str)
+                        output = commands.commands[key](chatroom, r_str)
                         break
                 if output != None:
                     conn.send(msg.gen_response(100))

@@ -2,8 +2,8 @@ import json
 
 info = {
     "chat_init"     :'Initializng chatroom',
-    "sock_init"     :'Socket created',
-    "goodbye"       :'Bye!'
+    "ready"         :'Ready',
+    "goodbye"       :'Bye'
 }
 
 response = {
@@ -16,5 +16,7 @@ response = {
     301             :'Command is malformed'
 }
 
-def gen_response(code):
-    return json.dumps((code, response[code])).encode("utf-8")
+def gen_response(code, msg=None):
+    if msg == None:
+        msg = response[code]
+    return json.dumps((code, msg)).encode("utf-8")
