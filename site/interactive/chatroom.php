@@ -14,58 +14,11 @@
           <p>Hello, Mason!</p>
         </div>
         <div class="chat">
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
-          <p>Mason: Howdy</p>
+
         </div>
         <div class="chat_foot">
-          <input type="text" name="" value="">
+          <input type="text" name="chatmsg" class="chat_msg" value="">
+          <button type="submit" name="button">Submit</button>
         </div>
       </div>
     </div>
