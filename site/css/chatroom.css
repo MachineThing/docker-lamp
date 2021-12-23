@@ -4,30 +4,35 @@ html,body {
 
 .container {
   margin: 10px;
-  height: calc(100vh - 60px); /* Crap solution but hey it works */
-  display: flex;
+  height: fit-content;
+  display: block;
   flex-flow: column;
 }
 
-.container > h1 {
-  flex: 0;
+.form {
+  height: calc(100vh - calc(80px + 4em)); /* Crap solution but hey it works */
+  padding: 0px;
+  display: flex;
+  flex-flow: column;
+  width: inherit;
+  background-color: white;
 }
 
 .chat_head {
-  padding-bottom: 5px;
+  border-bottom: black 1px solid;
+  padding: 5px;
   flex: 0;
 }
 
 .chat {
-  background-color: white;
-  border: black 1px;
-  border-style: solid none;
+  padding: 0px 5px;
   overflow-y: scroll;
   flex: 1;
 }
 
 .chat_foot {
-  padding-top: 5px;
+  border-top: black 1px solid;
+  padding: 5px;
   flex: 0;
 }
 
