@@ -40,5 +40,11 @@
         <li><a href="/phpinfo.php">PHP Info</a></li>
       </ul>
     </div>
+    <div class="buttons">
+      <a href="https://www.debian.org"><img src="/static/images/debian.gif" alt="Powered by Debian"></a>
+      <a href="https://www.theoldnet.com"><img src="/static/images/oldnet.gif" alt="The Old Net"></a>
+      <a href="http://www.toastytech.com/evil"><img src="/static/images/ieexplode.gif" alt="ie go boom"></a>
+      <a href="https://www.vim.org"><img src="/static/images/vim.gif" alt="I love Vim"></a>
+    </div>
   </body>
 </html>

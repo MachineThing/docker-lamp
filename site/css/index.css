@@ -13,6 +13,17 @@ body {
   font-family: serif;
 }
 
+.buttons {
+  margin: 5px 0px;
+  display: flex;
+}
+
+.buttons > a > img {
+  margin-right: 5px;
+  width: 88px;
+  height: 31px;
+}
+
 .container {
   padding: 15px;
   border: 1px solid black;
@@ -33,6 +44,6 @@ body {
   background-color: white;
 }
 
-.guestpost p {
+.guestpost > p {
   margin: 0px;
 }

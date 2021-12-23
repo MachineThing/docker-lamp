@@ -1,9 +1,4 @@
-html,body {
-  margin: 0px;
-}
-
 .container {
-  margin: 10px;
   height: fit-content;
   display: block;
   flex-flow: column;
