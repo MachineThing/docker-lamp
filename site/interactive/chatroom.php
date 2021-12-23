@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/chatroom.css">
-    <script src="/js/chatroom.js" charset="utf-8"></script>
     <title>My Site!</title>
   </head>
   <body>
@@ -23,5 +22,6 @@
         </div>
       </div>
     </div>
+    <script src="/js/chatroom.js" charset="utf-8"></script>
   </body>
 </html>
