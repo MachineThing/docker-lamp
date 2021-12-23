@@ -10,4 +10,4 @@ class chatroom():
 
     def get(self):
         for msg in self._chat:
-            yield {'time':int(msg[0].strftime('%s')), 'name':msg[1], 'msg':msg[2]}
+            yield {'time':int(msg[0].strftime('%s'))*1000, 'name':msg[1], 'msg':msg[2]}

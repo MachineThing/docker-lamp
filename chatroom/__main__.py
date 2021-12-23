@@ -19,8 +19,6 @@ sock.bind((host, port))
 
 chatroom = chat.chatroom()
 
-print(msg.info["ready"])
-
 # Routine
 
 def routine():
@@ -35,7 +33,7 @@ def routine():
             response = command.decode("utf-8").split(":")
             if len(response) > 3 or len(response) < 2:
                 print("Bad command: {}".format(response))
-                conn.send(msg.gen_response(301))
+                conn.send(msg.gen_response("malformed"))
             else:
                 if len(response) == 2:
                     response.append("None")
@@ -54,19 +52,20 @@ def routine():
                             break
                     if command_exists:
                         if output != None:
-                            conn.send(msg.gen_response(100, output))
+                            conn.send(msg.gen_response("good", output))
                         else:
-                            conn.send(msg.gen_response(100))
+                            conn.send(msg.gen_response("good"))
                     else:
                         print("Failed to execute command {}: {}: {}".format(r_com, r_nme, r_str))
-                        conn.send(msg.gen_response(300))
+                        conn.send(msg.gen_response("bad_command"))
                 except BaseException as e:
                     print("Error executing command {}: {}: {}".format(r_com, r_nme, r_str))
                     print_exc()
-                    conn.send(msg.gen_response(200))
+                    conn.send(msg.gen_response("command_failed"))
 
 def quit_routine():
     sock.shutdown(1)
     print(msg.info["goodbye"])
 
+print(msg.info["ready"])
 sigterm.sigterm(routine, quit_routine)
