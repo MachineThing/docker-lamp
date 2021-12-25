@@ -14,19 +14,19 @@
 }
 
 /* Chatroom page parts */
-.chat_head {
+#chat_head {
   border-bottom: black 1px solid;
   padding: 5px;
   flex: 0;
 }
 
-.chat {
+#chat {
   padding: 0px 5px;
   overflow-y: scroll;
   flex: 1;
 }
 
-.chat_foot {
+#chat_foot {
   border-top: black 1px solid;
   padding: 5px;
   flex: 0;
@@ -37,11 +37,11 @@ p {
   margin: 0px 0px;
 }
 
-.chat_msg {
+#chat_msg {
   margin-right: 5px;
   width: 100%;
 }
 
-.chat_nickname {
+#chat_nickname {
   font-weight: bold;
 }

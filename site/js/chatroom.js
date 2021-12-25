@@ -25,7 +25,7 @@ function initName(skipGet=false) {
     document.cookie = `name=${name};SameSite=lax; ${document.cookie}`;
   }
 
-  var nickid = document.getElementById("Nickname");
+  var nickid = document.getElementById("chat_nickname");
   nickid.innerHTML = name;
   nickid.style.color = getNickColor(name);
 
@@ -62,7 +62,6 @@ function getNickColor(nickname) {
   const hex_codes = [];
   const sortedLetters = [...letters]; // Copy array
   sortedLetters.sort();
-  console.log(letters, sortedLetters);
   for (const x of sortedLetters) {
     for (const y of letters) {
       if (x == y) {
@@ -79,5 +78,11 @@ function getNickColor(nickname) {
   return `#${hex_code}`;
 }
 
+// Actual chat stuff
+function chatMsg(nick, message) {
+
+}
+
 // Initiaization
 const nickname = initName();
+chatMsg("ChatBot", `Hello ${nickname}! Welcome to Mason\'s chatroom, please be nice to other people :)`);

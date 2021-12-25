@@ -10,13 +10,13 @@
     <div class="container">
       <h1>Chatroom</h1>
       <div class="form">
-        <div class="chat_head">
-          <p>Hello, <span id="Nickname" class="chat_nickname"></span>!<button onclick="initName(true)" type="button" name="button" style="float: right;">Change nickname</button></p>
+        <div id="chat_head">
+          <p>Hello, <span id="chat_nickname"></span>!<button onclick="initName(true)" type="button" name="button" style="float: right;">Change nickname</button></p>
         </div>
-        <div class="chat">
+        <div id="chat">
         </div>
-        <div class="chat_foot">
-          <input id="" type="text" name="chatmsg" class="chat_msg" value="">
+        <div id="chat_foot">
+          <input type="text" name="chatmsg" id="chat_msg" value="">
           <button onclick="postChat()" type="button" name="button">Submit</button>
         </div>
       </div>
