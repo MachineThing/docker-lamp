@@ -36,7 +36,7 @@
       <h2>Links</h2>
       <ul>
         <li><a href="/interactive/guestbook.php">Guestbook</a></li>
-        <li><a href="/interactive/chatroom.php">Chatroom</a></li>
+        <li><a href="/interactive/chatroom.html">Chatroom</a></li>
         <li><a href="/phpinfo.php">PHP Info</a></li>
       </ul>
     </div>
