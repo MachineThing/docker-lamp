@@ -12,4 +12,4 @@ class chatroom():
 
     def get(self):
         for msg in self._chat:
-            yield {'time':get_time(), 'name':msg[1], 'msg':msg[2]}
+            yield {'time':msg[0], 'name':msg[1], 'msg':msg[2]}

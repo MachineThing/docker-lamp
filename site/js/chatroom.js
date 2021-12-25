@@ -106,5 +106,44 @@ function postChat() {
   } else {
     chatMsg(nickname, message);
     document.getElementById("chat_msg").value = "";
+    // Send message via AJAX
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        var xmlDoc = this.responseXML;
+        const response = xmlDoc.getElementsByTagName("response")[0];
+        if (response.attributes.code.value != "good") {
+          throw response.attributes.code.value;
+        }
+        //chatMsg();
+      }
+    };
+    xhttp.open("POST", "/api/chat.php", true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.send(`nick=${nickname}&msg=${message}`);
   }
+}
+
+function getChat() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      var xmlDoc = this.responseXML;
+      const response = xmlDoc.getElementsByTagName("response")[0];
+      if (response.attributes.code.value == "good") {
+        for (var msg of response.children) {
+          const msg_time = msg.attributes.time;
+          const msg_name = msg.attributes.name;
+          const msg_msg = msg.attributes.msg;
+          chatMsg(msg_name, msg_msg);
+        }
+        console.log(response);
+      } else {
+        throw response.attributes.code.value;
+      }
+      //chatMsg();
+    }
+  };
+  xhttp.open("GET", "/api/chat.php", true);
+  xhttp.send();
 }
