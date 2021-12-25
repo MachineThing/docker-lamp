@@ -115,7 +115,6 @@ function postChat() {
         if (response.attributes.code.value != "good") {
           throw response.attributes.code.value;
         }
-        //chatMsg();
       }
     };
     xhttp.open("POST", "/api/chat.php", true);
@@ -132,7 +131,7 @@ function getChat() {
       const response = xmlDoc.getElementsByTagName("response")[0];
       if (response.attributes.code.value == "good") {
         for (var msg of response.children) {
-          const msg_time = msg.attributes.time;
+          const msg_id = msg.attributes.id;
           const msg_name = msg.attributes.name;
           const msg_msg = msg.attributes.msg;
           chatMsg(msg_name, msg_msg);

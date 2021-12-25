@@ -21,7 +21,7 @@ def gen_response(code, msg=None):
     if msg != None:
         for i in msg:
             chatMsg = root.createElement('chat')
-            chatMsg.setAttribute("time", str(i["time"]))
+            chatMsg.setAttribute("id", str(i["id"]))
             chatMsg.setAttribute("name", str(i["name"]))
             chatMsg.setAttribute("msg", str(i["msg"]))
             response.appendChild(chatMsg)
