@@ -18,6 +18,7 @@ sock.bind((host, port))
 # Initialize chatroom object
 
 chatroom = chat.chatroom()
+chatroom.push("ChatBot", "Chatroom initialized!")
 
 # Routine
 

@@ -95,16 +95,12 @@ function chatMsg(nick, message) {
   chatDiv.appendChild(newChatMsg);
 }
 
-// Initiaization
-const nickname = initName();
-chatMsg("ChatBot", `Hello ${nickname}! Welcome to Mason\'s chatroom, please be nice to other people :)`);
-
 function postChat() {
   const message = document.getElementById("chat_msg").value;
   if (message == "") {
     chatMsg("ChatBot", "Your message cannot be blank!");
   } else {
-    chatMsg(nickname, message);
+    //chatMsg(nickname, message);
     document.getElementById("chat_msg").value = "";
     // Send message via AJAX
     var xhttp = new XMLHttpRequest();
@@ -123,7 +119,7 @@ function postChat() {
   }
 }
 
-function getChat() {
+function getChat(func=null) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
@@ -131,18 +127,31 @@ function getChat() {
       const response = xmlDoc.getElementsByTagName("response")[0];
       if (response.attributes.code.value == "good") {
         for (var msg of response.children) {
-          const msg_id = msg.attributes.id;
-          const msg_name = msg.attributes.name;
-          const msg_msg = msg.attributes.msg;
-          chatMsg(msg_name, msg_msg);
+          const msg_id = msg.attributes.id.value;
+          const msg_name = msg.attributes.name.value;
+          const msg_msg = msg.attributes.msg.value;
+          if (msg_id > latestId) {
+            chatMsg(msg_name, msg_msg);
+            latestId = msg_id;
+          }
         }
-        console.log(response);
+        if (func != null) {
+          func(); // Call "after execution" function if we have one.
+        }
       } else {
         throw response.attributes.code.value;
       }
-      //chatMsg();
     }
   };
   xhttp.open("GET", "/api/chat.php", true);
   xhttp.send();
 }
+
+// Initiaization
+const nickname = initName();
+var latestId = -1; // Make this a global variable
+// Get latest chats.
+getChat(function () {
+  chatMsg("ChatBot", `Hello ${nickname}! Welcome to Mason\'s chatroom, please be nice to other people :)`);
+});
+var intervalId = setInterval(getChat, 1000);
