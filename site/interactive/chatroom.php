@@ -11,7 +11,7 @@
       <h1>Chatroom</h1>
       <div class="form">
         <div class="chat_head">
-          <p>Hello, <span id="Nickname"></span>!<button onclick="initName(true)" type="button" name="button" style="float: right;">Change nickname</button></p>
+          <p>Hello, <span id="Nickname" class="chat_nickname"></span>!<button onclick="initName(true)" type="button" name="button" style="float: right;">Change nickname</button></p>
         </div>
         <div class="chat">
         </div>

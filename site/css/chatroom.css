@@ -13,6 +13,7 @@
   background-color: white;
 }
 
+/* Chatroom page parts */
 .chat_head {
   border-bottom: black 1px solid;
   padding: 5px;
@@ -32,11 +33,15 @@
   display: flex;
 }
 
+p {
+  margin: 0px 0px;
+}
+
 .chat_msg {
   margin-right: 5px;
   width: 100%;
 }
 
-p {
-  margin: 0px 0px;
+.chat_nickname {
+  font-weight: bold;
 }
