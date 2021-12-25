@@ -1,13 +1,15 @@
-from datetime import datetime
+from time import time
+from math import floor
+
+get_time = lambda : floor(time()*1000)
 
 class chatroom():
     def __init__(self):
         self._chat = []
 
     def push(self, name, msg):
-        now = datetime.now()
-        self._chat.append((now, name, msg))
+        self._chat.append((get_time(), name, msg))
 
     def get(self):
         for msg in self._chat:
-            yield {'time':int(msg[0].strftime('%s'))*1000, 'name':msg[1], 'msg':msg[2]}
+            yield {'time':get_time(), 'name':msg[1], 'msg':msg[2]}

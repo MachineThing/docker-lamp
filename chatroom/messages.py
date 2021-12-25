@@ -1,4 +1,4 @@
-import json
+from xml.dom import minidom
 
 info = {
     "chat_init"     :'Initializng chatroom',
@@ -14,4 +14,15 @@ response = [
 ]
 
 def gen_response(code, msg=None):
-    return json.dumps((code, msg)).encode("utf-8")
+    root = minidom.Document()
+    response = root.createElement('response')
+    response.setAttribute('code', code)
+    root.appendChild(response)
+    if msg != None:
+        for i in msg:
+            chatMsg = root.createElement('chat')
+            chatMsg.setAttribute("time", str(i["time"]))
+            chatMsg.setAttribute("name", str(i["name"]))
+            chatMsg.setAttribute("msg", str(i["msg"]))
+            response.appendChild(chatMsg)
+    return root.toprettyxml(indent ="\t").encode("utf-8")
