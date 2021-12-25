@@ -21,7 +21,6 @@
 }
 
 #chat {
-  padding: 0px 5px;
   overflow-y: scroll;
   flex: 1;
 }
@@ -37,11 +36,18 @@ p {
   margin: 0px 0px;
 }
 
-#chat_msg {
-  margin-right: 5px;
-  width: 100%;
+.chat_msg {
+  padding: 0px 5px;
+  width: calc(100% - 10px);
+  white-space: normal;
+  word-break: break-all;
+  border-bottom: black 1px solid;
 }
 
-#chat_nickname {
+.chat_msg:hover {
+  background-color: antiquewhite
+}
+
+.chat_nickname {
   font-weight: bold;
 }

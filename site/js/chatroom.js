@@ -14,7 +14,7 @@ function getName() {
 }
 
 function initName(skipGet=false) {
-  var name;
+  var name = null;
 
   if (!skipGet) {
     name = getName();
@@ -80,9 +80,31 @@ function getNickColor(nickname) {
 
 // Actual chat stuff
 function chatMsg(nick, message) {
-
+  var chatDiv = document.getElementById("chat");
+  // Make elements
+  var newChatMsg = document.createElement("p");
+  var newMsgNick = document.createElement("span");
+  // Nickname element
+  newMsgNick.className = "chat_nickname";
+  newMsgNick.innerHTML = nick;
+  newMsgNick.style.color = getNickColor(nick);
+  // Chat message element
+  newChatMsg.className = "chat_msg";
+  newChatMsg.appendChild(newMsgNick); // Append nickname
+  newChatMsg.innerHTML += `: ${message}`;
+  chatDiv.appendChild(newChatMsg);
 }
 
 // Initiaization
 const nickname = initName();
 chatMsg("ChatBot", `Hello ${nickname}! Welcome to Mason\'s chatroom, please be nice to other people :)`);
+
+function postChat() {
+  const message = document.getElementById("chat_msg").value;
+  if (message == "") {
+    chatMsg("ChatBot", "Your message cannot be blank!");
+  } else {
+    chatMsg(nickname, message);
+    document.getElementById("chat_msg").value = "";
+  }
+}
